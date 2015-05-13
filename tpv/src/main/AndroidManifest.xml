@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fcano.tpv">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MesasActivity"
+            android:label="@string/menu"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.FamiliasActivity"
+            android:label="@string/title_activity_familias"
+            android:parentActivityName=".activities.MesasActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ProductosActivity"
+            android:label="@string/title_activity_familias"
+            android:parentActivityName=".activities.FamiliasActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.FamiliasActivity" />
+        </activity>
+        <activity
+            android:name=".fdgdgdfgdgdgdgdgddd"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_fdgdgdfgdgdgdgdgddd"></activity>
+        <activity
+            android:name=".activities.DetalleActivity"
+            android:label="@string/title_activity_detalle"
+            android:parentActivityName=".activities.ProductosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fcano.tpv.activities.ProductosActivity" />
+        </activity>
+    </application>
+
+</manifest>

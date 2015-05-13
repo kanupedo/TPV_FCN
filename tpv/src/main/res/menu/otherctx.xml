@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="all">
+        <item
+            android:id="@+id/mnuUnoUno"
+            android:title="uno"></item>
+        <item
+            android:id="@+id/mnuUnoDos"
+            android:title="dos"></item>
+    </group>
+    <group>
+        <item
+            android:id="@+id/mnuTres"
+            android:title="Cerrar"></item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuDosUno"
+            android:title="Tres"></item>
+        <item
+            android:id="@+id/mnuDosDos"
+            android:title="Cuatro"></item>
+        <item
+            android:id="@+id/mnuDosTres"
+            android:title="Cinco"></item>
+    </group>
+</menu>

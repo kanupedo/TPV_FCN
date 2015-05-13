@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+    ns="http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+    <locations class="java.util.ArrayList">
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.fdgdgdfgdgdgdgdgddd" />
+            <point x="1376" y="2084" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.SplashActivity" />
+            <point x="500" y="6160" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.MenuState"
+                className="com.fcano.tpv.activities.DetalleActivity" />
+            <point x="5240" y="100" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.DetalleActivity" />
+            <point x="3660" y="100" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.MesasActivity" />
+            <point x="2316" y="2116" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.ProductosActivity" />
+            <point x="500" y="100" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.MenuState"
+                className="com.fcano.tpv.activities.ProductosActivity" />
+            <point x="2080" y="100" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.MainActivity" />
+            <point x="1932" y="5148" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.MenuState"
+                className="com.fcano.tpv.activities.MainActivity" />
+            <point x="2260" y="2224" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.fcano.tpv.activities.FamiliasActivity" />
+            <point x="500" y="4140" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.MenuState"
+                className="com.fcano.tpv.activities.FamiliasActivity" />
+            <point x="2080" y="4140" />
+        </statePointEntry>
+    </locations>
+</navigationModel>
