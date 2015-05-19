@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.fcano.tpv.R;
 import com.fcano.tpv.modelos.Detalle;
@@ -105,6 +106,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         mScene1 = Scene.getSceneForLayout(mSceneRoot, R.layout.lista_pedidos, getActivity());
         mScene2 = Scene.getSceneForLayout(mSceneRoot, R.layout.grid_pedidos, getActivity());
         //  return inflater.inflate(R.layout.lista_pedidos, container, false);
+
         return inflater.inflate(R.layout.lista_pedidos, container, false);
     }
 
@@ -218,7 +220,10 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         Log.i("Position: ", String.valueOf(position));
         Log.i("PositionParent: ", String.valueOf(parent.getItemAtPosition(position)));
         if (position >= 0) {
-            mListener.onFragmentInteraction(parent.getContext(), position, (String) parent.getItemAtPosition(position));
+            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+            String text = textView.getText().toString();
+            Log.i("Texto: ", text);
+            mListener.onFragmentInteraction(parent.getContext(), position, text);
         }
     }
 

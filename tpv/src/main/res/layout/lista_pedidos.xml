@@ -7,5 +7,4 @@
     android:fastScrollAlwaysVisible="false"
     android:textAlignment="center"
     android:touchscreenBlocksFocus="false">
-
 </ListView>

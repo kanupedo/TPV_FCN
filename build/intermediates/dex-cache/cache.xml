@@ -18,6 +18,11 @@
         <dex
             dex="C:\Users\Fernando\AndroidStudioProjects\TPV_DEV\tpv\build\intermediates\pre-dexed\debug\classes-c38ef7b12cc7319198240c836fdcd2771b01bce6.jar" />
     </item>
+    <item jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\libs\json-1.0.jar"
+        jumboMode="false" revision="21.1.1" sha1="2afd6672c4e1b5e78af36196fc187baec3e6fd08">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\json-1.0-5aad6a2bb46dcf670e20b41b4922457af8df72df.jar" />
+    </item>
     <item
         jar="C:\Users\Fernando\Documents\SDKTools\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false" revision="21.1.1" sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
@@ -34,6 +39,12 @@
         jumboMode="false" revision="21.1.2" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex
             dex="C:\Users\Fernando\AndroidStudioProjects\TPV_DEV\tpv\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-5252904e744da91a7cc1abc7409efdb7113c6e48.jar" />
+    </item>
+    <item
+        jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jumboMode="false" revision="21.1.1" sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\classes-3419cffc128eda01ab46c4999c672b39645d0231.jar" />
     </item>
     <item jar="C:\Users\Fernando\AndroidStudioProjects\TPV_v_0.1\tpv\libs\json-1.0.jar"
         jumboMode="false" revision="19.1.0" sha1="2afd6672c4e1b5e78af36196fc187baec3e6fd08">
@@ -59,6 +70,12 @@
             dex="C:\Users\Fernando\AndroidStudioProjects\TPV_DEV\tpv\build\intermediates\pre-dexed\debug\classes-8331bec8ce8102098bce8303e21d6f90ea9475d9.jar" />
     </item>
     <item
+        jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false" revision="21.1.1" sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\classes-e6235e1aaec5719f8cd9041d7a73fc96e0071680.jar" />
+    </item>
+    <item
         jar="C:\Users\Fernando\AndroidStudioProjects\TPV_DEV\tpv\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false" revision="21.1.2" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex
@@ -80,6 +97,24 @@
         jumboMode="false" revision="21.1.1" sha1="2afd6672c4e1b5e78af36196fc187baec3e6fd08">
         <dex
             dex="C:\Users\Fernando\AndroidStudioProjects\TPV_DEV\tpv\build\intermediates\pre-dexed\debug\json-1.0-61abb43310b4ee8dd6185a21af39ab9bb6562b6c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false" revision="21.1.1" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6fded3b13b64278a6ed1b701f0bfb4450b5fa657.jar" />
+    </item>
+    <item
+        jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
+        jumboMode="false" revision="21.1.1" sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\classes-9f1b366e588036c1bbff8529ede8019c1951d98d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false" revision="21.1.1" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex
+            dex="C:\Users\Fernando\AndroidStudioProjects\TPV_FCN\tpv\build\intermediates\pre-dexed\debug\classes-feafae28650e9fa4be7e7875a17aac9c0adc3784.jar" />
     </item>
 
 </items>

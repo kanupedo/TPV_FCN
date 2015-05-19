@@ -102,7 +102,7 @@ public class FamiliasActivity extends ActionBarActivity implements ItemFragment.
             Intent intent = new Intent(ctx, ProductosActivity.class);
             intent.putExtra(KEY_LIST, numLista);
             intent.putExtra("TITLE", titulo);
-            intent.putExtra("PRODUCTO", String.valueOf(lstFamilia.getItemAtPosition(position)));
+            intent.putExtra("PRODUCTO", campo);
             startActivityForResult(intent, COD_RTN_ACT); //abrimos y esperamos resultado
         }
     }
