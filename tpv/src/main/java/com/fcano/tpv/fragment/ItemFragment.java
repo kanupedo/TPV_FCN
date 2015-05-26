@@ -118,6 +118,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         mListView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         nameValuePairList = new ArrayList<NameValuePair>();
         json_manager = new JSON_Manager(mListView, this.getActivity(), mParam2);
+        Log.i("URL", json_manager.getUrl());
         json_manager.accessWebService();
 
         super.onViewCreated(view, savedInstanceState);
@@ -126,6 +127,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
         inflater.inflate(R.menu.pedidos, menu);
     }
 

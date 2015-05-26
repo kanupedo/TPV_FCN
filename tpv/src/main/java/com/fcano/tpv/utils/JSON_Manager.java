@@ -7,12 +7,16 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fcano.tpv.R;
 import com.fcano.tpv.activities.MainActivity;
+import com.fcano.tpv.adapters.Lista_adaptador;
 import com.fcano.tpv.modelos.Detalle;
 
 import org.apache.http.HttpResponse;
@@ -52,17 +56,18 @@ public class JSON_Manager {
     private Context context;
     private String url;
     private String mainNode, childNode;
-    private int cc;
+    private int cc = 0;
     private ArrayList<String> list;
     public static ArrayList<Detalle> listaNombres;
     private static List<Map<String, String>> List;
+    int i = 0;
 
     public JSON_Manager(Context contex) {
         this.context = contex;
     }
 
     public JSON_Manager(AbsListView listView, Context context, int index) {
-        listaNombres = new ArrayList<>();
+        listaNombres = new ArrayList<Detalle>();
 
         switch (index) {
             case 1:
@@ -180,10 +185,11 @@ public class JSON_Manager {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //  Log.i("conexion ", jsonChildNode.toString());
                 String name = jsonChildNode.optString(childNode);
+
                 Detalle detalle = new Detalle();
                 detalle.setDetalle(name);
                 listaNombres.add(detalle);
-                // Log.i("DETALLE", listaNombres.get(i).getDetalle());
+                Log.i("DETALLE", listaNombres.get(i).getDetalle());
                 //String number = jsonChildNode.optString("employee no");
                 String outPut = name;
                 List.add(createLista("lista", outPut));
@@ -192,19 +198,103 @@ public class JSON_Manager {
            /* Toast.makeText(getApplicationContext(), "Error" + e.toString(),
                     Toast.LENGTH_SHORT).show();*/
         }
-
-        if (listView instanceof ListView) {
-            setSimpleAdapter(listView);
+        if (cc == 0) {
+            Log.i("cc:", String.valueOf(cc));
+            if (listView != null) {
+                if (listView instanceof ListView) {
+                    setSimpleAdapter(listView);
+                } else {
+                    setSimpleAdapter(gridView);
+                }
+            }
         } else {
-            setSimpleAdapter(gridView);
+            Log.i("cc:", String.valueOf(cc));
+            setCustomAdapter(listView);
         }
+    }
+
+    private void setCustomAdapter(final ListView listView) {
+
+        final Lista_adaptador lista_adaptador = new Lista_adaptador(context, R.layout.fragment_prod, listaNombres) {
+            @Override
+            public void onEntrada(Object entrada, View view) {
 
 
+            }
+        };
+
+        listView.setAdapter(new Lista_adaptador(context, R.layout.fragment_prod, listaNombres) {
+            int pos = 0;
+
+            @Override
+            public void onEntrada(Object entrada, View view) {
+                pos = listaNombres.indexOf(entrada);
+                TextView textView = (TextView) view.findViewById(R.id.txt_prod);
+                pos = listaNombres.indexOf(entrada);
+                if (textView != null) {
+                    textView.setText(((Detalle) entrada).getDetalle());
+                    Log.i("^^", (String) textView.getText());
+
+                }
+                final TextView tx_cant = (TextView) view.findViewById(R.id.tx_cant);
+                Log.i("POS:", String.valueOf(listaNombres.indexOf(entrada)));
+                final Button button = (Button) view.findViewById(R.id.bt_menos);
+                button.setTag(pos);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i("^^", "CLICK -");
+                        View view1 = (View) v.getParent();
+                        TextView textView1 = (TextView) view1.findViewById(R.id.tx_cant);
+                        String text = (String) textView1.getText();
+                        int cant = Integer.parseInt(text);
+                        if (cant > 0) {
+                            cant--;
+                            //      String pos = (String) button.getTag();
+                            // ProdFragment.Posicionar(cant,Integer.parseInt(pos));
+                            // View view2= view1.findViewById(R.id.tx_cant);
+                            //  view1=lista_adaptador.getView( Integer.parseInt((String) button.getTag()),view2,null);
+                            TextView textView = (TextView) view1.findViewById(R.id.tx_cant);
+                            textView.setText(Integer.toString(cant));
+                        }
+                        Log.i("CANT", String.valueOf(cant));
+                        Log.i("POS:", String.valueOf(button.getTag()));
+                    }
+
+                });
+                Button button2 = (Button) view.findViewById(R.id.bt_mas);
+                button.setTag(pos);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i("^^", "CLICK +");
+                        View view1 = (View) v.getParent();
+                        TextView textView1 = (TextView) view1.findViewById(R.id.tx_cant);
+                        String text = (String) textView1.getText();
+                        int cant = Integer.parseInt(text);
+                        if (cant < 10) {
+                            cant++;
+                            //  String pos = (String) button.getTag();
+                            // ProdFragment.Posicionar(cant,Integer.parseInt(pos));
+                            // View view2= view1.findViewById(R.id.tx_cant);
+                            //    view1=lista_adaptador.getView(Integer.parseInt(button.getTag().toString()),view2,null);
+                            TextView textView = (TextView) view1.findViewById(R.id.tx_cant);
+                            textView.setText(Integer.toString(cant));
+                        }
+                        Log.i("CANT:", String.valueOf(cant));
+                        Log.i("POS:", String.valueOf(button.getTag()));
+                    }
+                });
+            }
+
+        });
+        cc = 0;
     }
 
     public void setSimpleAdapter(View view) {
 
         if (view instanceof ListView) {
+            Log.i("LISTVIEW", "LISTVIEW2");
             listView = (ListView) view;
             SimpleAdapter simpleAdapter = new SimpleAdapter(this.context, List,
                     android.R.layout.simple_list_item_1,
@@ -241,6 +331,7 @@ public class JSON_Manager {
 
     public void setUrl(int cc) {
         this.url = this.url + cc;
+        setCc(cc);
     }
 
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)

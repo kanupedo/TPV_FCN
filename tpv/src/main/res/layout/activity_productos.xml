@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/txFamilia"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -15,13 +15,10 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ListView
-        android:id="@+id/listaProducto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txFamilia"></ListView>
-
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txFamilia"
+        android:background="#f3f3f3"></FrameLayout>
 </RelativeLayout>

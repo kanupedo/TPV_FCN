@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -29,10 +30,9 @@ public class FamiliasActivity extends ActionBarActivity implements ItemFragment.
         setContentView(R.layout.activity_familias);
         Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
         int pos = intent.getIntExtra(MainActivity.KEY_LIST, 0); //los datos que nos pasan;
-        titulo = intent.getStringExtra(MainActivity.KEY_LIST);
-       /* if (pos > 0) {
-            titulo = getString(R.string.menu) + " " + pos;
-        }*/
+        if (titulo == null) {
+            titulo = intent.getStringExtra(MainActivity.KEY_LIST);
+        }
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -84,13 +84,14 @@ public class FamiliasActivity extends ActionBarActivity implements ItemFragment.
     }
 
     public void restoreActionBar() {
-        Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
-        numLista = intent.getIntExtra(FamiliasActivity.KEY_LIST, 0); //los datos que nos pasan;
-        titulo = intent.getStringExtra("TITLE");
+        //    Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
+        //   numLista = intent.getIntExtra(FamiliasActivity.KEY_LIST, 0); //los datos que nos pasan;
+        //   titulo = intent.getStringExtra("TITLE");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(titulo);
+        Log.i("TITULO", titulo);
     }
 
     @Override

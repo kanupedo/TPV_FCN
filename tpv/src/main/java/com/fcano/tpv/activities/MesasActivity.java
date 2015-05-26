@@ -128,9 +128,9 @@ public class MesasActivity extends ActionBarActivity implements ItemFragment.OnF
     }
 
     public void restoreActionBar() {
-        Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
-        numLista = intent.getIntExtra(MesasActivity.KEY_LIST, 0); //los datos que nos pasan;
-        titulo = getString(R.string.title);
+        //Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
+        // numLista = intent.getIntExtra(MesasActivity.KEY_LIST, 0); //los datos que nos pasan;
+        // titulo = intent.getStringExtra("TITLE");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);

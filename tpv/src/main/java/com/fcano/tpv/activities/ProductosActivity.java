@@ -5,22 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fcano.tpv.R;
-import com.fcano.tpv.fragment.ItemFragment;
+import com.fcano.tpv.fragment.ProdFragment;
 import com.fcano.tpv.modelos.Detalle;
 import com.fcano.tpv.utils.JSON_Manager;
 
 import java.util.ArrayList;
 
-public class ProductosActivity extends ActionBarActivity implements ItemFragment.OnFragmentInteractionListener {
+public class ProductosActivity extends ActionBarActivity implements ProdFragment.OnFragmentInteractionListener {
     private String titulo;
     JSON_Manager json_manager;
     Context ctx;
@@ -31,7 +30,7 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
     private static int linea = 0;
     private static int cantidad = 1;
     public ArrayList<String> list;
-    public ArrayList<Detalle> pedido;
+    public static ArrayList<Detalle> pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +49,25 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
         list = new ArrayList<String>();
         pedido = new ArrayList<Detalle>();
         ctx = this;
-       /* if (savedInstanceState == null) {
+
+       /* json_manager = new JSON_Manager(null, this, 3);
+        json_manager.setUrl(numLista);
+        Log.i("URL: ", json_manager.getUrl());
+        json_manager.accessWebService();
+        pedido = json_manager.getList();*/
+        Log.i("NumLista:", String.valueOf(numLista));
+
+        if (savedInstanceState == null) {
 
             getFragmentManager().beginTransaction()
-                    .add(R.id.content, ItemFragment.newInstance("PRODUCTOS", 3))
+                    .add(R.id.content, ProdFragment.newInstance("PRODUCTOS", 3, numLista))
                     .commit();
             ;
-        }*/
-        lstProductos = (ListView) findViewById(R.id.listaProducto);
-        lstProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() { //gestionamos la pulsacion sobre la lista
+        }
+
+
+        //lstProductos = (ListView) findViewById(R.id.pedido_prod);
+       /* lstProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() { //gestionamos la pulsacion sobre la lista
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (numLista == position + 1) {
                     cantidad++;
@@ -93,16 +102,16 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
                 //   intent.putExtra(KEY_LIST,numLista); //mandamos el numero del libro a visualizar
                 //    startActivityForResult(intent, COD_RTN_ACT); //abrimos y esperamos resultado*/
                 //  Log.i("pedido", pedido.get(position).getDetalle()+": "+cantidad);
-            }
-        });
+        // }
+        //   });
 
 
-        json_manager = new JSON_Manager((ListView) findViewById(R.id.listaProducto), this, 3);
-        json_manager.setUrl(numLista);
+        //  json_manager = new JSON_Manager((ListView) findViewById(R.id.listaProducto), this, 3);
+        //  json_manager.setUrl(numLista);
         //Log.i("URL: ",json_manager.getUrl());
-        json_manager.accessWebService();
-        pedido = json_manager.getList();
-        //Log.i("ljfd","");*/
+        //  json_manager.accessWebService();
+//        pedido = json_manager.getList();
+        // Log.i(pedido.size());
 
 
     }
@@ -144,6 +153,9 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
     }
 
     public void restoreActionBar() {
+        // Intent intent = getIntent(); //recoge el intent que ha originado el lanzamiento
+        //  numLista = intent.getIntExtra(ProductosActivity.KEY_LIST, 0); //los datos que nos pasan;
+        //   titulo = intent.getStringExtra("TITLE");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -158,9 +170,10 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
         return true;
     }
 
+
     @Override
-    public void onFragmentInteraction(Context context, int position, String campo) {
-        if (this.ctx.equals(context)) {
+    public void onFragmentInteraction(Context context, int position, int cant) {
+        // if (this.ctx.equals(context)) {
             if (numLista == position + 1) {
                 cantidad++;
             } else {
@@ -170,15 +183,18 @@ public class ProductosActivity extends ActionBarActivity implements ItemFragment
                 linea++;
             }
 
-            Toast.makeText(ctx, String.valueOf(cantidad) + " " + list.get(position), Toast.LENGTH_SHORT).show();
 
-            Detalle detail = comprobarDetalle(position);
+        Toast.makeText(ctx, String.valueOf(cantidad) + " ", Toast.LENGTH_SHORT).show();
+
+          /*  Detalle detail = comprobarDetalle(position);
             detail.setCOD_PED(MainActivity.detalle.getCOD_PED());
             detail.setLinea(linea);
             detail.setCOD_PROD(MainActivity.detalle.getCOD_PROD());
             detail.setDetalle(list.get(position));
             detail.setCantidad(cantidad);
-            pedido.add(detail);
-        }
+            pedido.add(detail);*/
+
     }
+
+
 }

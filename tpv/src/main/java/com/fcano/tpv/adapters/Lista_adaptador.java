@@ -1,6 +1,7 @@
 package com.fcano.tpv.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,17 @@ public abstract class Lista_adaptador extends BaseAdapter {
     }
 
 
+
     @Override
     public View getView(int posicion, View view, ViewGroup pariente) {
         if (view == null) {
             LayoutInflater vi = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R_layout_IdView, null);
+            Log.i("Inflo:", String.valueOf(R_layout_IdView));
         }
+        Log.i(" NO Inflo:", String.valueOf(R_layout_IdView));
         onEntrada(entradas.get(posicion), view);
+
         return view;
     }
 
