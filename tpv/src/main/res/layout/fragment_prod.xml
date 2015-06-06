@@ -21,9 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
-        android:text="-"
-        android:clickable="false"
-        android:focusable="false" />
+        android:text="-" />
 
     <TextView
         android:id="@+id/tx_cant"
@@ -41,9 +39,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:gravity="center_vertical|center_horizontal"
-        android:text="+"
-        android:clickable="false"
-        android:focusable="false" />
+        android:text="+" />
 </LinearLayout>
 
 

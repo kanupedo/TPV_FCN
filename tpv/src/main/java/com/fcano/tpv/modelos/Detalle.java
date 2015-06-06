@@ -16,14 +16,14 @@ public class Detalle {
     private float precio;
     private int iva;
     private float pvp;
-
+    private float total;
 
     public Detalle() {
 
 
     }
 
-    public Detalle(int COD_PED, int linea, int COD_PROD, String detalle, int dto, int cantidad, float precio, int iva, float pvp, int ticket) {
+    public Detalle(int COD_PED, int linea, int COD_PROD, String detalle, int dto, int cantidad, float precio, int iva, float pvp, int ticket, float total) {
         this.COD_PED = COD_PED;
         this.linea = linea;
         this.COD_PROD = COD_PROD;
@@ -34,6 +34,7 @@ public class Detalle {
         this.iva = iva;
         this.pvp = pvp;
         this.ticket = ticket;
+        this.total = total;
     }
 
 
@@ -106,4 +107,11 @@ public class Detalle {
         return pvp;
     }
 
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
 }//END CLASE

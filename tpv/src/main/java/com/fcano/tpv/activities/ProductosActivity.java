@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.fcano.tpv.R;
 import com.fcano.tpv.fragment.ProdFragment;
 import com.fcano.tpv.modelos.Detalle;
+import com.fcano.tpv.modelos.Producto;
 import com.fcano.tpv.utils.JSON_Manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductosActivity extends ActionBarActivity implements ProdFragment.OnFragmentInteractionListener {
     private String titulo;
@@ -30,7 +32,10 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
     private static int linea = 0;
     private static int cantidad = 1;
     public ArrayList<String> list;
-    public static ArrayList<Detalle> pedido;
+    public static ArrayList<Producto> pedido;
+    public static HashMap<String, Detalle> listaDetalle = new HashMap<>();
+    ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,8 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(titulo);
         list = new ArrayList<String>();
-        pedido = new ArrayList<Detalle>();
+        pedido = new ArrayList<Producto>();
+
         ctx = this;
 
        /* json_manager = new JSON_Manager(null, this, 3);
@@ -116,7 +122,7 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
 
     }
 
-    private Detalle comprobarDetalle(int pos) {
+  /*  private Detalle comprobarDetalle(int pos) {
         Detalle d = new Detalle();
         for (Detalle detalle : pedido) {
             for (String nombre : list) {
@@ -126,7 +132,7 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
             }
         }
         return d;
-    }
+    }*/
 
 
     @Override
@@ -142,12 +148,14 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_toggle) {
-            Toast.makeText(ctx, "TIRITI", Toast.LENGTH_SHORT).show();
+        if ((id == R.id.action_toggle) && (listaDetalle.size() > 0)) {
+            // Toast.makeText(ctx, "TIRITI", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ctx, DetalleActivity.class);
             intent.putExtra(KEY_LIST, numLista); //mandamos el numero del libro a visualizar
             startActivityForResult(intent, COD_RTN_ACT);
             return true;
+        } else {
+            Toast.makeText(ctx, "Debe seleccionar al menos un producto", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

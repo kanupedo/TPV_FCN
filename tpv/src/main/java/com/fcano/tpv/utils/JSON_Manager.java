@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import com.fcano.tpv.R;
 import com.fcano.tpv.activities.MainActivity;
+import com.fcano.tpv.activities.ProductosActivity;
 import com.fcano.tpv.adapters.Lista_adaptador;
 import com.fcano.tpv.modelos.Detalle;
+import com.fcano.tpv.modelos.Producto;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -61,6 +63,7 @@ public class JSON_Manager {
     public static ArrayList<Detalle> listaNombres;
     private static List<Map<String, String>> List;
     int i = 0;
+    private String[] campos = {"COD_FAM", "COD_PROD", "NOMBRE_PROD", "DESCRIPCION", "PRECIO", "IVA", "PVP", "ACTIVA"};
 
     public JSON_Manager(Context contex) {
         this.context = contex;
@@ -184,15 +187,26 @@ public class JSON_Manager {
             for (int i = 0; i < jsonMainNode.length(); i++) {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //  Log.i("conexion ", jsonChildNode.toString());
-                String name = jsonChildNode.optString(childNode);
+                if (childNode.equals("NOMBRE_PROD")) {
+                    final int COD_FAM = jsonChildNode.optInt(campos[0]);
+                    final int COD_PROD = jsonChildNode.optInt(campos[1]);
+                    String nombre_prod = jsonChildNode.optString(campos[2]);
+                    String descripcion = jsonChildNode.optString(campos[3]);
+                    float precio = (float) jsonChildNode.optDouble(campos[4]);
+                    int iva = jsonChildNode.optInt(campos[5]);
+                    float pvp = (float) jsonChildNode.optDouble(campos[6]);
+                    boolean activa = jsonChildNode.optBoolean(campos[7]);
+                    Producto producto = new Producto(COD_FAM, COD_PROD, nombre_prod, descripcion, precio, iva, pvp, activa);
+                    ProductosActivity.pedido.add(producto);
+                    // Log.i("DETALLE", listaNombres.get(i).getDetalle());
+                } else {
+                    String name = jsonChildNode.optString(childNode);
+                    //String number = jsonChildNode.optString("employee no");
+                    String outPut = name;
+                    List.add(createLista("lista", outPut));
+                }
 
-                Detalle detalle = new Detalle();
-                detalle.setDetalle(name);
-                listaNombres.add(detalle);
-                Log.i("DETALLE", listaNombres.get(i).getDetalle());
-                //String number = jsonChildNode.optString("employee no");
-                String outPut = name;
-                List.add(createLista("lista", outPut));
+
             }
         } catch (JSONException e) {
            /* Toast.makeText(getApplicationContext(), "Error" + e.toString(),
@@ -215,32 +229,25 @@ public class JSON_Manager {
 
     private void setCustomAdapter(final ListView listView) {
 
-        final Lista_adaptador lista_adaptador = new Lista_adaptador(context, R.layout.fragment_prod, listaNombres) {
-            @Override
-            public void onEntrada(Object entrada, View view) {
 
-
-            }
-        };
-
-        listView.setAdapter(new Lista_adaptador(context, R.layout.fragment_prod, listaNombres) {
+        listView.setAdapter(new Lista_adaptador(context, R.layout.fragment_prod, ProductosActivity.pedido) {
             int pos = 0;
 
             @Override
             public void onEntrada(Object entrada, View view) {
-                pos = listaNombres.indexOf(entrada);
+                pos = ProductosActivity.pedido.indexOf(entrada);
                 TextView textView = (TextView) view.findViewById(R.id.txt_prod);
-                pos = listaNombres.indexOf(entrada);
+                // pos = listaNombres.indexOf(entrada);
                 if (textView != null) {
-                    textView.setText(((Detalle) entrada).getDetalle());
-                    Log.i("^^", (String) textView.getText());
+                    textView.setText(((Producto) entrada).getDescripcion());
+
 
                 }
                 final TextView tx_cant = (TextView) view.findViewById(R.id.tx_cant);
-                Log.i("POS:", String.valueOf(listaNombres.indexOf(entrada)));
-                final Button button = (Button) view.findViewById(R.id.bt_menos);
-                button.setTag(pos);
-                button.setOnClickListener(new View.OnClickListener() {
+
+                final Button button_menos = (Button) view.findViewById(R.id.bt_menos);
+                button_menos.setTag(pos);
+                button_menos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.i("^^", "CLICK -");
@@ -256,15 +263,23 @@ public class JSON_Manager {
                             //  view1=lista_adaptador.getView( Integer.parseInt((String) button.getTag()),view2,null);
                             TextView textView = (TextView) view1.findViewById(R.id.tx_cant);
                             textView.setText(Integer.toString(cant));
+                            if (cant == 0) {
+                                TextView textView2 = (TextView) view1.findViewById(R.id.txt_prod);
+                                if (ProductosActivity.listaDetalle.containsKey(textView2.getText())) {
+                                    ProductosActivity.listaDetalle.remove(textView2.getText());
+                                }
+                                Toast.makeText(v.getContext(), "Quitado", Toast.LENGTH_SHORT).show();
+                            }
                         }
+
                         Log.i("CANT", String.valueOf(cant));
-                        Log.i("POS:", String.valueOf(button.getTag()));
+                        Log.i("POS:", String.valueOf(button_menos.getTag()));
                     }
 
                 });
-                Button button2 = (Button) view.findViewById(R.id.bt_mas);
-                button.setTag(pos);
-                button2.setOnClickListener(new View.OnClickListener() {
+                final Button button_mas = (Button) view.findViewById(R.id.bt_mas);
+                button_mas.setTag(pos);
+                button_mas.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.i("^^", "CLICK +");
@@ -280,9 +295,39 @@ public class JSON_Manager {
                             //    view1=lista_adaptador.getView(Integer.parseInt(button.getTag().toString()),view2,null);
                             TextView textView = (TextView) view1.findViewById(R.id.tx_cant);
                             textView.setText(Integer.toString(cant));
+                            Toast.makeText(v.getContext(), "Anadido", Toast.LENGTH_SHORT);
+                            if (cant > 0) {
+                                TextView textView2 = (TextView) view1.findViewById(R.id.txt_prod);
+                                Producto producto = ProductosActivity.pedido.get((Integer) button_mas.getTag());
+                                Log.i("INDEX:", String.valueOf(button_mas.getTag()));
+                                Log.i("SIZE:", String.valueOf(ProductosActivity.pedido.size()));
+
+                                Log.i("PRODUCTO:", producto.getDescripcion());
+
+                                Detalle detalle;
+                                if (ProductosActivity.listaDetalle.containsKey(producto.getDescripcion())) {
+                                    Log.i("CONTIENE", "SI");
+                                    detalle = ProductosActivity.listaDetalle.get(producto.getDescripcion());
+                                    detalle.setCantidad(cant);
+                                    detalle.setTotal((cant * producto.getPvp()));
+                                    ProductosActivity.listaDetalle.put(producto.getDescripcion(), detalle);
+                                } else {
+                                    Log.i("CONTIENE", "NO");
+                                    detalle = new Detalle();
+                                    detalle.setCOD_PROD(producto.getCOD_PROD());
+                                    detalle.setDetalle(producto.getDescripcion());
+                                    detalle.setCantidad(cant);
+                                    detalle.setTotal((cant * producto.getPvp()));
+                                    ProductosActivity.listaDetalle.put(producto.getDescripcion(), detalle);
+                                }
+
+                                Toast.makeText(v.getContext(), "Anadido", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
+
                         Log.i("CANT:", String.valueOf(cant));
-                        Log.i("POS:", String.valueOf(button.getTag()));
+                        Log.i("POS:", String.valueOf(button_mas.getTag()));
                     }
                 });
             }
@@ -339,7 +384,11 @@ public class JSON_Manager {
         String cc = String.valueOf(MainActivity.detalle.getCOD_PED());
         String linea = String.valueOf(MainActivity.detalle.getLinea());
         String cod_prod = String.valueOf(MainActivity.detalle.getCOD_PROD());
-        String mURL = "http://fsolutions.comuf.com/php/pedido.php?cc=" + cc + "&linea=" + linea + "&cod_prod=" + cod_prod + "&cantidad=1";
+        String desc_prod = MainActivity.detalle.getDetalle();
+        String cantidad = String.valueOf(MainActivity.detalle.getCantidad());
+        String pvp = String.format("%.2f", MainActivity.detalle.getTotal());
+        String mURL = "http://fsolutions.comuf.com/php/pedido.php?cc=" + cc + "&linea=" + linea + "&cod_prod=" + cod_prod + "&desc_prod=" + desc_prod + "&cantidad=" + cantidad + "&pvp=" + pvp;
+
         HttpClient httpClient = new DefaultHttpClient();
         HttpGet httpPost = new HttpGet(mURL);
         ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();

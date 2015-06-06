@@ -57,17 +57,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.FamiliasActivity" />
         </activity>
-        <activity
-            android:name=".fdgdgdfgdgdgdgdgddd"
-            android:icon="@drawable/ic_glass_logo"
-            android:label="@string/title_activity_fdgdgdfgdgdgdgdgddd"></activity>
+
         <activity
             android:name=".activities.DetalleActivity"
-            android:label="@string/title_activity_detalle"
-            android:parentActivityName=".activities.ProductosActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fcano.tpv.activities.ProductosActivity" />
+            android:label="@string/title_activity_detalle">
+
         </activity>
     </application>
 

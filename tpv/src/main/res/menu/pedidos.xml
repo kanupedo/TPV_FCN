@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_toggle"
-        android:icon="@drawable/ic_action_list_light"
+        android:icon="@drawable/ic_action_accept"
         android:title="Cambiar vista"
         app:showAsAction="always|withText" />
 </menu>
