@@ -154,7 +154,7 @@ public class ProductosActivity extends ActionBarActivity implements ProdFragment
             intent.putExtra(KEY_LIST, numLista); //mandamos el numero del libro a visualizar
             startActivityForResult(intent, COD_RTN_ACT);
             return true;
-        } else {
+        } else if ((id == R.id.action_toggle) && (listaDetalle.size() > 0)) {
             Toast.makeText(ctx, "Debe seleccionar al menos un producto", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);

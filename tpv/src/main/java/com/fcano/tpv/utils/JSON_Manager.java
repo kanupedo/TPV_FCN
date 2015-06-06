@@ -268,7 +268,7 @@ public class JSON_Manager {
                                 if (ProductosActivity.listaDetalle.containsKey(textView2.getText())) {
                                     ProductosActivity.listaDetalle.remove(textView2.getText());
                                 }
-                                Toast.makeText(v.getContext(), "Quitado", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(v.getContext(), "Quitado", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -321,7 +321,7 @@ public class JSON_Manager {
                                     ProductosActivity.listaDetalle.put(producto.getDescripcion(), detalle);
                                 }
 
-                                Toast.makeText(v.getContext(), "Anadido", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(v.getContext(), "Anadido", Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -385,9 +385,10 @@ public class JSON_Manager {
         String linea = String.valueOf(MainActivity.detalle.getLinea());
         String cod_prod = String.valueOf(MainActivity.detalle.getCOD_PROD());
         String desc_prod = MainActivity.detalle.getDetalle();
+        //char desc =String. desc_prod;
         String cantidad = String.valueOf(MainActivity.detalle.getCantidad());
         String pvp = String.format("%.2f", MainActivity.detalle.getTotal());
-        String mURL = "http://fsolutions.comuf.com/php/pedido.php?cc=" + cc + "&linea=" + linea + "&cod_prod=" + cod_prod + "&desc_prod=" + desc_prod + "&cantidad=" + cantidad + "&pvp=" + pvp;
+        String mURL = "http://fsolutions.comuf.com/php/pedido.php?cc=" + cc + "&linea=" + linea + "&cod_prod=" + cod_prod + "&desc_prod=" + desc_prod.replace(" ", "%20").trim() + "&cantidad=" + cantidad + "&pvp=" + pvp;
 
         HttpClient httpClient = new DefaultHttpClient();
         HttpGet httpPost = new HttpGet(mURL);

@@ -98,10 +98,11 @@ public class DetalleActivity extends ActionBarActivity {
             linea++;
             detalle.setCOD_PED(MainActivity.num_pedido);
             detalle.setLinea(linea);
+            MainActivity.detalle = detalle;
             json_manager = new JSON_Manager(this);
             json_manager.insertar();
         }
-        Intent intent = new Intent(this, MesasActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivityForResult(intent, 0); //abrimos y esperamos resultado*/
 
     }
